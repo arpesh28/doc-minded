@@ -9,7 +9,7 @@ type StreamResponse = {
   isLoading: boolean;
 };
 
-export const ChatContext = createContext({
+export const ChatContext = createContext<StreamResponse>({
   addMessage: () => {},
   message: "",
   handleInputChange: () => {},
@@ -23,11 +23,12 @@ interface Props {
 
 export const ChatContextProvider = ({ fileId, children }: Props) => {
   const [message, setMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { toast } = useToast();
 
   const { mutate: sendMessage } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ message }: { message: string }) => {
       const response = await fetch("/api/message", {
         method: "POST",
         body: JSON.stringify({
@@ -43,6 +44,12 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       return response.body;
     },
   });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const addMessage = () => sendMessage({ message });
 
   return (
     <ChatContext.Provider
