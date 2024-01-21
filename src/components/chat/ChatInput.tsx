@@ -24,7 +24,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
             <div className="relative">
               <Textarea
                 placeholder="Enter your question..."
-                autoFocus
+                // autoFocus
                 onChange={handleInputChange}
                 value={message}
                 rows={1}
