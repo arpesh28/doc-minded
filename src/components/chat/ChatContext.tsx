@@ -58,7 +58,6 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
 
       // Step 2
       const previousMessages = utils.getFileMessages.getInfiniteData();
-
       // Step 3
       utils.getFileMessages.setInfiniteData(
         {
