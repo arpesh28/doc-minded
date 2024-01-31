@@ -25,8 +25,6 @@ export default function Home() {
 
         <RegisterLink
           className={buttonVariants({ size: "lg", className: "mt-5" })}
-          href="/dashboard"
-          target="_blank"
         >
           Get started <ArrowRight className="w-5 h-5 ml-2" />
         </RegisterLink>
