@@ -15,7 +15,7 @@ const Page = () => {
     router.push(origin ? `/${origin}` : "/dashboard");
   } else {
     if (error?.data?.code === "UNAUTHORIZED") {
-      router.push("/sign-in");
+      router.push("/");
     }
   }
 
